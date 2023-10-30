@@ -4,6 +4,7 @@ import AddListForm from './components/AddListForm';
 import PlayListTable from './components/PlayListTable';
 import { useState } from 'react';
 import { IBasePlayList, IPlayList } from './interface';
+import EditListForm from './components/EditListForm';
 
 const Layout = styled.div`
   width: 100%;
@@ -52,13 +53,29 @@ const App = (): JSX.Element => {
     },
   ];
 
-  // const initialFormState: IUser = { title: '', artist: '', id: null };
+  const initialFormState: IPlayList = { title: '', artist: '', id: null };
 
   const [lists, setLists] = useState(playListData);
+  const [editList, setEditList] = useState(initialFormState);
+  const [editing, setEdit] = useState(false);
 
   const addList = (newList: IBasePlayList) => {
     const id = lists.length + 1;
     setLists([...lists, { ...newList, id }]);
+  };
+
+  const onCurrentList = (list: IPlayList) => {
+    setEditList(list);
+    setEdit(true);
+  };
+
+  const onUpdateList = (id: number, newList: IPlayList) => {
+    setEdit(false);
+    setLists(lists.map((i) => (i.id === id ? newList : i)));
+  };
+
+  const onDeleteList = (currentList: IPlayList) => {
+    setLists(lists.filter((i) => i.id !== currentList.id));
   };
 
   return (
@@ -67,8 +84,22 @@ const App = (): JSX.Element => {
       <Layout>
         <h1>CRUD App with Hooks</h1>
         <ListContainer>
-          <AddListForm onAddList={addList} />
-          <PlayListTable playLists={lists} />
+          {editing ? (
+            <EditListForm
+              onUpdateList={onUpdateList}
+              setEdit={setEdit}
+              currentList={editList}
+            />
+          ) : (
+            <>
+              <AddListForm onAddList={addList} />
+            </>
+          )}
+          <PlayListTable
+            playLists={lists}
+            onEdit={onCurrentList}
+            onDelete={onDeleteList}
+          />
         </ListContainer>
       </Layout>
     </>
