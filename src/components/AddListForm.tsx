@@ -6,14 +6,14 @@ interface IProps {
   onAddList: (list: IBasePlayList) => void;
 }
 
-const Label = styled.label`
+export const Label = styled.label`
   font-weight: 500;
   max-width: 100%;
   display: block;
   margin: 1rem 0 0.5rem;
 `;
 
-const AddListContainer = styled.div`
+export const AddListContainer = styled.div`
   flex: 1;
 
   h2 {
@@ -55,33 +55,32 @@ const AddListForm: React.FunctionComponent<IProps> = (props) => {
 
   return (
     <AddListContainer>
-      <div>
-        <h2>Add My 2023 Music Playlist</h2>
-        <form
-          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-            if (!list.title || !list.artist) return;
-            props.onAddList(list);
-            setList(initialFormState);
-          }}
-        >
-          <Label>Title</Label>
-          <input
-            type='text'
-            name='title'
-            value={list.title}
-            onChange={handleInputChange}
-          />
-          <Label>Artist</Label>
-          <input
-            type='text'
-            name='artist'
-            value={list.artist}
-            onChange={handleInputChange}
-          />
-          <button>Add new music</button>
-        </form>
-      </div>
+      <h2>Add My 2023 Music Playlist</h2>
+      <form
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          if (!list.title || !list.artist)
+            return alert('모든 칸을 입력해주세요😀 (한 글자 이상)');
+          props.onAddList(list);
+          setList(initialFormState);
+        }}
+      >
+        <Label>Title</Label>
+        <input
+          type='text'
+          name='title'
+          value={list.title}
+          onChange={handleInputChange}
+        />
+        <Label>Artist</Label>
+        <input
+          type='text'
+          name='artist'
+          value={list.artist}
+          onChange={handleInputChange}
+        />
+        <button>Add new music</button>
+      </form>
     </AddListContainer>
   );
 };
