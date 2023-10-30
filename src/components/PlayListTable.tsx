@@ -5,6 +5,8 @@ import { IPlayList } from '../interface';
 
 interface IProps {
   playLists: Array<IPlayList>;
+  onEdit: (list: IPlayList) => void;
+  onDelete: (list: IPlayList) => void;
 }
 
 const ViewListContainer = styled.div`
@@ -76,10 +78,10 @@ const PlayListTable: React.FunctionComponent<IProps> = (props) => {
                 <td>{i.title}</td>
                 <td>{i.artist}</td>
                 <td className='actions'>
-                  <button>
+                  <button onClick={() => props.onEdit(i)}>
                     <BsPencilFill />
                   </button>
-                  <button>
+                  <button onClick={() => props.onDelete(i)}>
                     <BsFillEraserFill />
                   </button>
                 </td>
@@ -87,7 +89,7 @@ const PlayListTable: React.FunctionComponent<IProps> = (props) => {
             ))
           ) : (
             <tr>
-              <td colSpan={3}>No users</td>
+              <td colSpan={3}>No List</td>
             </tr>
           )}
         </tbody>
