@@ -10,6 +10,8 @@ interface IProps {
 }
 
 const ViewListContainer = styled.div`
+  flex-basis: 100%;
+
   @media (min-width: 1000px) {
     flex: 1;
     margin-bottom: 0;

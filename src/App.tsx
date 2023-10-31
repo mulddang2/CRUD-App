@@ -38,13 +38,13 @@ const App = (): JSX.Element => {
   const playListData: Array<IPlayList> = [
     {
       id: 1,
-      title: `Pfitzner: Sieben Lieder, Op. 2 - II. Ist der Himmel darum im Lenz so blau(with Matthias Goerne) 7개의 가곡집 중 '왜 봄에 하늘은 그렇게 푸르게 빛나는 걸까요?`,
-      artist: '조성진',
+      title: `6 Klavierstücke, Op. 15: No. 1, Serenata`,
+      artist: 'Stephen Hough',
     },
     {
       id: 2,
-      title: 'Chopin: Scherzo No. 1 in B Minor, Op. 20',
-      artist: '임동혁',
+      title: 'L’Amour, Les Baguettes, Paris',
+      artist: 'Stella Jang',
     },
     {
       id: 3,

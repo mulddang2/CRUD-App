@@ -14,7 +14,12 @@ export const Label = styled.label`
 `;
 
 export const AddListContainer = styled.div`
-  flex: 1;
+  flex-basis: 100%;
+  margin-bottom: 1rem;
+  
+  @media (min-width: 1000px) {
+    flex: 1;
+  }
 
   h2 {
     font-size: 1.5rem;
