@@ -1,10 +1,11 @@
-import GlobalStyles from './GlobalStyles ';
 import styled from 'styled-components';
 import AddListForm from './components/AddListForm';
 import PlayListTable from './components/PlayListTable';
-import { useState } from 'react';
 import { IBasePlayList, IPlayList } from './interface';
 import EditListForm from './components/EditListForm';
+import GlobalStyles from './styles/GlobalStyles ';
+import { editListState, editingState, listState } from './atom';
+import { useRecoilState } from 'recoil';
 
 const Layout = styled.div`
   width: 100%;
@@ -34,30 +35,9 @@ const ListContainer = styled.div`
 `;
 
 const App = (): JSX.Element => {
-  // NOTE: Data
-  const playListData: Array<IPlayList> = [
-    {
-      id: 1,
-      title: `6 Klavierstücke, Op. 15: No. 1, Serenata`,
-      artist: 'Stephen Hough',
-    },
-    {
-      id: 2,
-      title: 'L’Amour, Les Baguettes, Paris',
-      artist: 'Stella Jang',
-    },
-    {
-      id: 3,
-      title: 'William Bolcom: Graceful Ghost Rag',
-      artist: '양인모',
-    },
-  ];
-
-  const initialFormState: IPlayList = { title: '', artist: '', id: null };
-
-  const [lists, setLists] = useState(playListData);
-  const [editList, setEditList] = useState(initialFormState);
-  const [editing, setEdit] = useState(false);
+  const [lists, setLists] = useRecoilState(listState);
+  const [editList, setEditList] = useRecoilState(editListState);
+  const [editing, setEdit] = useRecoilState(editingState);
 
   const addList = (newList: IBasePlayList) => {
     const id = lists.length + 1;
@@ -82,7 +62,7 @@ const App = (): JSX.Element => {
     <>
       <GlobalStyles />
       <Layout>
-        <h1>CRUD App with Hooks</h1>
+        <h1>CRUD App with Recoil</h1>
         <ListContainer>
           {editing ? (
             <EditListForm
