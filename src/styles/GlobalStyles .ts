@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import HelveticaLight from '../src/styles/fonts/Helvetica-Light.woff2';
-import HelveticaBold from '../src/styles/fonts/Helvetica-Bold.woff2';
-import Helvetica from '../src/styles/fonts/Helvetica.woff2';
+import HelveticaLight from '/src/styles/fonts/Helvetica-Light.woff2';
+import HelveticaBold from '/src/styles/fonts/Helvetica-Bold.woff2';
+import Helvetica from '/src/styles/fonts/Helvetica.woff2';
 
 const GlobalStyles = createGlobalStyle`
 * {
