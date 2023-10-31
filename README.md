@@ -1,27 +1,14 @@
-# React + TypeScript + Vite
+# My-Playlist🎧
+![image](https://github.com/mulddang2/My-Playlist/assets/96711699/55a25aeb-a4b1-49bb-b665-2e9f09d941ee)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My-Playlist는 React로 구축된 간단한 음악 목록 애플리케이션 입니다. 이를 통해 사용자는 자신이 한해동안 좋아했던 음악목록들을 돌아보고 해당 목록을 생성, 관리할 수 있습니다.
 
-Currently, two official plugins are available:
+## Features
+- Favorite playlist management: 사용자는 새로운 음악 목록을 추가하고 수정하고, 삭제할 수 있습니다.
+- 영속성: 사용자 데이터와 할일 목록은 브라우저의 local storage에 저장되므로 세션 간에 데이터를 보관할 수 있습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+공통 준비 사항 : yarn 
+실행- 개발모드(yarn dev), 운영모드(yarn build, yarn preview) 
