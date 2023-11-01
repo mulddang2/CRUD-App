@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BsPencilFill } from 'react-icons/bs';
 import { BsFillEraserFill } from 'react-icons/bs';
-import { IPlayList } from '../interface';
+import { IPlayList } from '../types/iType';
 
 interface IProps {
   playLists: Array<IPlayList>;

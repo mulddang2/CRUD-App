@@ -1,10 +1,10 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
-import { IPlayList } from './interface';
+import { PlayListItem } from './types/playListItem';
 
-const { persistAtom } = recoilPersist();
+const { persistAtom } = recoilPersist({ key: 'list' });
 
-export const listState = atom<IPlayList[]>({
+export const listState = atom<PlayListItem[]>({
   key: 'myPlayList',
   default: [
     {
@@ -26,9 +26,9 @@ export const listState = atom<IPlayList[]>({
   effects: [persistAtom],
 });
 
-export const editListState = atom<IPlayList>({
+export const editListState = atom<PlayListItem>({
   key: 'editList',
-  default: { title: '', artist: '', id: null },
+  default: { title: '', artist: '', id: -1 },
 });
 
 export const editingState = atom<boolean>({

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import AddListForm from './components/AddListForm';
 import PlayListTable from './components/PlayListTable';
-import { IBasePlayList, IPlayList } from './interface';
 import EditListForm from './components/EditListForm';
 import GlobalStyles from './styles/GlobalStyles ';
 import { editListState, editingState, listState } from './atom';
 import { useRecoilState } from 'recoil';
+import { IType } from './types/iType';
+import { PlayListItem } from './types/playListItem';
 
 const Layout = styled.div`
   width: 100%;
@@ -37,24 +38,24 @@ const ListContainer = styled.div`
 const App = (): JSX.Element => {
   const [lists, setLists] = useRecoilState(listState);
   const [editList, setEditList] = useRecoilState(editListState);
-  const [editing, setEdit] = useRecoilState(editingState);
+  const [editing, setEditing] = useRecoilState(editingState);
 
-  const addList = (newList: IBasePlayList) => {
+  const addList = (newList: PlayListItem) => {
     const id = lists.length + 1;
     setLists([...lists, { ...newList, id }]);
   };
 
-  const onCurrentList = (list: IPlayList) => {
+  const onCurrentList = (list: PlayListItem) => {
     setEditList(list);
-    setEdit(true);
+    setEditing(true);
   };
 
-  const onUpdateList = (id: number, newList: IPlayList) => {
-    setEdit(false);
+  const onUpdateList = (id: number, newList: PlayListItem) => {
+    setEditing(false);
     setLists(lists.map((i) => (i.id === id ? newList : i)));
   };
 
-  const onDeleteList = (currentList: IPlayList) => {
+  const onDeleteList = (currentList: IType) => {
     setLists(lists.filter((i) => i.id !== currentList.id));
   };
 
@@ -67,7 +68,7 @@ const App = (): JSX.Element => {
           {editing ? (
             <EditListForm
               onUpdateList={onUpdateList}
-              setEdit={setEdit}
+              setEdit={setEditing}
               currentList={editList}
             />
           ) : (

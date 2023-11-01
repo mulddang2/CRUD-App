@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { IBasePlayList } from '../interface';
+import { PlayListItem } from '../types/playListItem';
 
 interface IProps {
-  onAddList: (list: IBasePlayList) => void;
+  onAddList: (list: PlayListItem) => void;
 }
 
 export const Label = styled.label`
@@ -16,7 +16,7 @@ export const Label = styled.label`
 export const AddListContainer = styled.div`
   flex-basis: 100%;
   margin-bottom: 1rem;
-  
+
   @media (min-width: 1000px) {
     flex: 1;
   }
@@ -48,7 +48,7 @@ export const AddListContainer = styled.div`
   }
 `;
 
-const initialFormState = { title: '', artist: '' };
+const initialFormState = { id: -1, title: '', artist: '' };
 
 const AddListForm: React.FunctionComponent<IProps> = (props) => {
   const [list, setList] = useState(initialFormState);
