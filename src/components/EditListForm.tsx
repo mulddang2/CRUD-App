@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import { AddListContainer, Label } from './AddListForm';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { listState, selectedItemIdState } from '../atom';
 import { PlayListItem } from '../types/playListItem';
-
-interface IProps {
-  currentList: PlayListItem;
-  onUpdateList: (id: number, list: PlayListItem) => void;
-  setEdit: (bool: boolean) => void;
-}
 
 const EditListContainer = styled(AddListContainer)`
   button.disable {
@@ -18,48 +14,68 @@ const EditListContainer = styled(AddListContainer)`
   }
 `;
 
-const EditListForm = (props: IProps) => {
-  const [playList, setPlayList] = useState(props.currentList);
+const initialFormState = { id: -1, title: '', artist: '' };
+
+const EditListForm = () => {
+  const [list, setList] = useRecoilState(listState);
+  const [selectedItemId, setSelectedItemId] =
+    useRecoilState(selectedItemIdState);
+  const [selectedPlayListItem, setSelectedPlayListItem] =
+    useState<PlayListItem>(initialFormState);
 
   useEffect(() => {
-    setPlayList(props.currentList);
-  }, [props]);
+    const foundItem = list.filter((item) => item.id === selectedItemId);
+    if (foundItem.length === 0) {
+      return;
+    }
+    setSelectedPlayListItem(foundItem[0]);
+  }, [list, selectedItemId]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setPlayList({ ...playList, [name]: value });
+    setSelectedPlayListItem({ ...selectedPlayListItem, [name]: value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onUpdateItem = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!playList.title || !playList.artist) {
-      console.log('업로드실패');
-      alert('한 글자 이상 입력해주세요');
-      return false;
-    }
-    props.onUpdateList(playList.id!, playList);
+    setList(
+      list.map((item) =>
+        item.id === selectedItemId
+          ? {
+              id: selectedPlayListItem.id,
+              title: selectedPlayListItem.title.trim(),
+              artist: selectedPlayListItem.artist.trim(),
+            }
+          : item
+      )
+    );
+    setSelectedItemId(null);
   };
 
   return (
     <EditListContainer>
       <h2>Edit</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onUpdateItem}>
         <Label>Title</Label>
         <input
           type='text'
           name='title'
-          value={playList.title}
+          value={selectedPlayListItem?.title ?? ''}
           onChange={onInputChange}
         ></input>
         <Label>Artist</Label>
         <input
           type='text'
           name='artist'
-          value={playList.artist}
+          value={selectedPlayListItem?.artist ?? ''}
           onChange={onInputChange}
         ></input>
-        <button>Update</button>
-        <button className='disable' onClick={() => props.setEdit(false)}>
+        <button type='submit'>Update</button>
+        <button
+          type='button'
+          className='disable'
+          onClick={() => setSelectedItemId(null)}
+        >
           Cancel
         </button>
       </form>

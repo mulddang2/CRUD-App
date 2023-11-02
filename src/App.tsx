@@ -1,12 +1,10 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import AddListForm from './components/AddListForm';
-import PlayListTable from './components/PlayListTable';
-import EditListForm from './components/EditListForm';
+import { selectedItemIdState } from './atom';
 import GlobalStyles from './styles/GlobalStyles ';
-import { editListState, editingState, listState } from './atom';
-import { useRecoilState } from 'recoil';
-import { IType } from './types/iType';
-import { PlayListItem } from './types/playListItem';
+import AddListForm from './components/AddListForm';
+import EditListForm from './components/EditListForm';
+import PlayListTable from './components/PlayListTable';
 
 const Layout = styled.div`
   width: 100%;
@@ -36,28 +34,7 @@ const ListContainer = styled.div`
 `;
 
 const App = (): JSX.Element => {
-  const [lists, setLists] = useRecoilState(listState);
-  const [editList, setEditList] = useRecoilState(editListState);
-  const [editing, setEditing] = useRecoilState(editingState);
-
-  const addList = (newList: PlayListItem) => {
-    const id = lists.length + 1;
-    setLists([...lists, { ...newList, id }]);
-  };
-
-  const onCurrentList = (list: PlayListItem) => {
-    setEditList(list);
-    setEditing(true);
-  };
-
-  const onUpdateList = (id: number, newList: PlayListItem) => {
-    setEditing(false);
-    setLists(lists.map((i) => (i.id === id ? newList : i)));
-  };
-
-  const onDeleteList = (currentList: IType) => {
-    setLists(lists.filter((i) => i.id !== currentList.id));
-  };
+  const selectedItemId = useRecoilValue(selectedItemIdState);
 
   return (
     <>
@@ -65,22 +42,14 @@ const App = (): JSX.Element => {
       <Layout>
         <h1>CRUD App with Recoil</h1>
         <ListContainer>
-          {editing ? (
-            <EditListForm
-              onUpdateList={onUpdateList}
-              setEdit={setEditing}
-              currentList={editList}
-            />
-          ) : (
+          {selectedItemId === null ? (
             <>
-              <AddListForm onAddList={addList} />
+              <AddListForm />
             </>
+          ) : (
+            <EditListForm />
           )}
-          <PlayListTable
-            playLists={lists}
-            onEdit={onCurrentList}
-            onDelete={onDeleteList}
-          />
+          <PlayListTable />
         </ListContainer>
       </Layout>
     </>

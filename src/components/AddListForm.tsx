@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { PlayListItem } from '../types/playListItem';
-
-interface IProps {
-  onAddList: (list: PlayListItem) => void;
-}
+import { useRecoilState } from 'recoil';
+import { listState } from '../atom';
 
 export const Label = styled.label`
   font-weight: 500;
@@ -48,14 +45,38 @@ export const AddListContainer = styled.div`
   }
 `;
 
-const initialFormState = { id: -1, title: '', artist: '' };
+const initialFormState: NewItem = { title: '', artist: '' };
 
-const AddListForm: React.FunctionComponent<IProps> = (props) => {
-  const [list, setList] = useState(initialFormState);
+type NewItem = {
+  title: string;
+  artist: string;
+};
+
+const AddListForm: React.FunctionComponent = () => {
+  const [list, setList] = useRecoilState(listState);
+  const [newItem, setNewItem] = useState<NewItem>(initialFormState);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setList({ ...list, [name]: value });
+    setNewItem({ ...newItem, [name]: value });
+  };
+
+  const onAddItem = () => {
+    if (!newItem.title || !newItem.artist) {
+      alert('모든 칸을 입력해주세요😀 (한 글자 이상)');
+      return;
+    }
+
+    setList([
+      ...list,
+      {
+        id: list.length + 1,
+        title: newItem.title.trim(),
+        artist: newItem.artist.trim(),
+      },
+    ]);
+
+    setNewItem(initialFormState);
   };
 
   return (
@@ -64,27 +85,24 @@ const AddListForm: React.FunctionComponent<IProps> = (props) => {
       <form
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
-          if (!list.title || !list.artist)
-            return alert('모든 칸을 입력해주세요😀 (한 글자 이상)');
-          props.onAddList(list);
-          setList(initialFormState);
+          onAddItem();
         }}
       >
         <Label>Title</Label>
         <input
           type='text'
           name='title'
-          value={list.title}
+          value={newItem.title}
           onChange={handleInputChange}
         />
         <Label>Artist</Label>
         <input
           type='text'
           name='artist'
-          value={list.artist}
+          value={newItem.artist}
           onChange={handleInputChange}
         />
-        <button>Add new music</button>
+        <button type='submit'>Add new music</button>
       </form>
     </AddListContainer>
   );

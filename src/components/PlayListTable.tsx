@@ -1,13 +1,7 @@
+import { BsFillEraserFill, BsPencilFill } from 'react-icons/bs';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { BsPencilFill } from 'react-icons/bs';
-import { BsFillEraserFill } from 'react-icons/bs';
-import { IPlayList } from '../types/iType';
-
-interface IProps {
-  playLists: Array<IPlayList>;
-  onEdit: (list: IPlayList) => void;
-  onDelete: (list: IPlayList) => void;
-}
+import { listState, selectedItemIdState } from '../atom';
 
 const ViewListContainer = styled.div`
   flex-basis: 100%;
@@ -61,7 +55,18 @@ const Table = styled.table`
   }
 `;
 
-const PlayListTable: React.FunctionComponent<IProps> = (props) => {
+const PlayListTable: React.FunctionComponent = () => {
+  const [list, setList] = useRecoilState(listState);
+  const setSelectedItemId = useSetRecoilState(selectedItemIdState);
+
+  const onSelectItem = (id: number) => {
+    setSelectedItemId(id);
+  };
+
+  const onDeleteItem = (id: number) => {
+    setList(list.filter((item) => item.id !== id));
+  };
+
   return (
     <ViewListContainer>
       <h2>View My 2023 Music Playlist</h2>
@@ -74,16 +79,16 @@ const PlayListTable: React.FunctionComponent<IProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.playLists.length > 0 ? (
-            props.playLists.map((i) => (
-              <tr key={i.id}>
-                <td>{i.title}</td>
-                <td>{i.artist}</td>
+          {list.length > 0 ? (
+            list.map((item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.artist}</td>
                 <td className='actions'>
-                  <button onClick={() => props.onEdit(i)}>
+                  <button onClick={() => onSelectItem(item.id)}>
                     <BsPencilFill />
                   </button>
-                  <button onClick={() => props.onDelete(i)}>
+                  <button onClick={() => onDeleteItem(item.id)}>
                     <BsFillEraserFill />
                   </button>
                 </td>
