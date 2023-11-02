@@ -26,12 +26,10 @@ export const listState = atom<PlayListItem[]>({
   effects: [persistAtom],
 });
 
-export const editListState = atom<PlayListItem>({
-  key: 'editList',
-  default: { title: '', artist: '', id: -1 },
-});
 
-export const editingState = atom<boolean>({
-  key: 'editing',
-  default: false,
-});
+export const selectedItemIdState = atom<number| null>({
+  key: 'selectedItemId',
+  default: null,
+})
+
+
