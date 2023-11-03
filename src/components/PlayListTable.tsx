@@ -69,7 +69,7 @@ const PlayListTable: React.FunctionComponent = () => {
 
   return (
     <ViewListContainer>
-      <h2>View My 2023 Music Playlist</h2>
+      <h2>View Playlist</h2>
       <Table>
         <thead>
           <tr>

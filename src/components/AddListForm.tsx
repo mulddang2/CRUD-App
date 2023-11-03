@@ -81,7 +81,7 @@ const AddListForm: React.FunctionComponent = () => {
 
   return (
     <AddListContainer>
-      <h2>Add My 2023 Music Playlist</h2>
+      <h2>Add Playlist</h2>
       <form
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();

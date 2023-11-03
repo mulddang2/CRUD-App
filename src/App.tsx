@@ -27,6 +27,7 @@ const ListContainer = styled.div`
   flex-wrap: wrap;
   margin-left: -1rem;
   margin-right: -1rem;
+  margin-bottom: 1rem;
 
   > div {
     padding: 0 1rem;
@@ -40,7 +41,7 @@ const App = (): JSX.Element => {
     <>
       <GlobalStyles />
       <Layout>
-        <h1>CRUD App with Recoil</h1>
+        <h1>My 2023 Music Playlist</h1>
         <ListContainer>
           {selectedItemId === null ? (
             <>
