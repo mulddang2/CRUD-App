@@ -58,7 +58,7 @@ const AddListForm: React.FunctionComponent = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNewItem({ ...newItem, [name]: value });
+    setNewItem({ ...newItem, [name]: value.trimStart() });
   };
 
   const onAddItem = () => {
