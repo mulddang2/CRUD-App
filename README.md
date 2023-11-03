@@ -27,7 +27,7 @@ My-Playlist는 React로 구축된 간단한 음악 목록 애플리케이션 입
 2. 프로젝트 폴더로 이동:
 
    ```shell
-    cd /
+    cd My-Playlist
    ```
 
 3. 프로젝트 의존상태 설치:
