@@ -34,8 +34,9 @@ const GlobalStyles = createGlobalStyle`
 
 html, body {
   font-family: Helvetica, Sans-Serif;
-  color: #404040;
-  background-color: #fff;
+  color: ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.bgColor};
+  transition: background 0.2s ease-in, color 0.2s ease-in;
 }
 
 button {
@@ -51,7 +52,7 @@ button {
 
 [type=text] {
   display: block;
-  border: 1px solid #dedede;
+  border: 1px solid ${({ theme }) => theme.borderColor};
   border-radius: 4px;
   padding: 0.75rem;
   outline: none;
