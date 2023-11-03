@@ -1,16 +1,24 @@
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { selectedItemIdState } from './atom';
-import GlobalStyles from './styles/GlobalStyles ';
+import styled, { ThemeProvider } from 'styled-components';
 import AddListForm from './components/AddListForm';
 import EditListForm from './components/EditListForm';
 import PlayListTable from './components/PlayListTable';
+import { selectedItemIdState } from './store/list';
+import GlobalStyles from './styles/GlobalStyles';
+import { darkTheme, lightTheme } from './styles/styledTheme';
+import ThemeButton from './components/ThemeButton';
+import { isDarkModeState } from './store/theme';
 
 const Layout = styled.div`
   width: 100%;
   max-width: 1200px;
   padding: 0 1rem;
   margin: 0 auto;
+
+  .title-box {
+    display: flex;
+    align-items: center;
+  }
 
   h1 {
     margin: 1.5rem 0;
@@ -36,24 +44,30 @@ const ListContainer = styled.div`
 
 const App = (): JSX.Element => {
   const selectedItemId = useRecoilValue(selectedItemIdState);
+  const isDarkMode = useRecoilValue(isDarkModeState);
 
   return (
-    <>
-      <GlobalStyles />
-      <Layout>
-        <h1>My 2023 Music Playlist</h1>
-        <ListContainer>
-          {selectedItemId === null ? (
-            <>
-              <AddListForm />
-            </>
-          ) : (
-            <EditListForm />
-          )}
-          <PlayListTable />
-        </ListContainer>
-      </Layout>
-    </>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <>
+        <GlobalStyles />
+        <Layout>
+          <div className='title-box'>
+            <h1>My 2023 Music Playlist</h1>
+            <ThemeButton />
+          </div>
+          <ListContainer>
+            {selectedItemId === null ? (
+              <>
+                <AddListForm />
+              </>
+            ) : (
+              <EditListForm />
+            )}
+            <PlayListTable />
+          </ListContainer>
+        </Layout>
+      </>
+    </ThemeProvider>
   );
 };
 
