@@ -28,20 +28,20 @@ export const AddListContainer = styled.div`
   }
 
   button {
-    border: 1px solid #7f19e6;
-    background-color: #7f19e6;
+    border: 1px solid #570DF8;
+    background-color: #570DF8;
     color: #ffffff;
     font-size: 1rem;
 
     &:hover {
-      border: 1px solid #5702ab;
-      background-color: #5702ab;
+      border: 1px solid #4406CB;
+      background-color: #4406CB;
     }
   }
 
   [type='text']:focus {
-    border: 1px solid #7f19e6;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px #d5abff;
+    border: 1px solid #570DF8;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px #b39ce4;
   }
 `;
 
