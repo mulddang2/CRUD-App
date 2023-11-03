@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { AddListContainer, Label } from './AddListForm';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { listState, selectedItemIdState } from '../atom';
 import { PlayListItem } from '../types/playListItem';
+import { listState, selectedItemIdState } from '../store/list';
 
 const EditListContainer = styled(AddListContainer)`
   button.disable {

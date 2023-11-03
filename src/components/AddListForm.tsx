@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { listState } from '../atom';
+import { listState } from '../store/list';
 
 export const Label = styled.label`
   font-weight: 500;
@@ -27,21 +27,25 @@ export const AddListContainer = styled.div`
     }
   }
 
+  input {
+    color: ${({theme}) => theme.textColor}
+  }
+
   button {
-    border: 1px solid #570DF8;
-    background-color: #570DF8;
+    border: 1px solid ${({ theme }) => theme.buttonColor};
+    background-color: ${({ theme }) => theme.buttonColor};
     color: #ffffff;
     font-size: 1rem;
 
     &:hover {
-      border: 1px solid #4406CB;
-      background-color: #4406CB;
+      border: 1px solid #4406cb;
+      background-color: #4406cb;
     }
   }
 
   [type='text']:focus {
-    border: 1px solid #570DF8;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px #b39ce4;
+    border: 1px solid ${({ theme }) => theme.buttonColor};
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px ${({theme}) => theme.shadowColor};
   }
 `;
 

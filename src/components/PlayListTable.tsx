@@ -1,7 +1,7 @@
 import { BsFillEraserFill, BsPencilFill } from 'react-icons/bs';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { listState, selectedItemIdState } from '../atom';
+import { listState, selectedItemIdState } from '../store/list';
 
 const ViewListContainer = styled.div`
   flex-basis: 100%;
@@ -34,23 +34,22 @@ const Table = styled.table`
   }
 
   tr {
-    border-bottom: 1px solid #dedede;
+    border-bottom: 1px solid ${({ theme }) => theme.borderColor};
   }
 
   thead th {
-    border-bottom: 2px solid #dedede;
+    border-bottom: 2px solid ${({ theme }) => theme.borderColor};
   }
 
   button {
     display: inline-block;
     background: transparent;
-    border: 1px solid #cdcdcd;
-    color: #4e4e4e;
+    border: 1px solid ${({ theme }) => theme.borderColor};
+    color: ${({ theme }) => theme.iconColor};
     margin-right: 0.5rem;
 
     &:hover {
-      color: #4e4e4e;
-      border: 1px solid #818181;
+      border: 1px solid ${({ theme }) => theme.iconHoverBorderColor};
     }
   }
 `;
