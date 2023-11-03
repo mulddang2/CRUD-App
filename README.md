@@ -22,7 +22,7 @@ My-Playlist는 React로 구축된 간단한 음악 목록 애플리케이션 입
 1. 리포지토리 복제:
 
    ```shell
-   git clone https://github.com/mulddang2/MyPlaylist.git
+   git clone https://github.com/mulddang2/My-Playlist.git
    ```
 2. 프로젝트 폴더로 이동:
 
