@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
-import { PlayListItem } from './types/playListItem';
+import { PlayListItem } from '../types/playListItem';
 
 const { persistAtom } = recoilPersist({ key: 'list' });
 
@@ -26,10 +26,7 @@ export const listState = atom<PlayListItem[]>({
   effects: [persistAtom],
 });
 
-
-export const selectedItemIdState = atom<number| null>({
+export const selectedItemIdState = atom<number | null>({
   key: 'selectedItemId',
   default: null,
-})
-
-
+});
