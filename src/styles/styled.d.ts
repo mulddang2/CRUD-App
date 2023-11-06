@@ -1,6 +1,6 @@
-import "styled-components";
+import 'styled-components';
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme {
     bgColor: string;
     textColor: string;
@@ -10,5 +10,6 @@ declare module "styled-components" {
     iconColor: string;
     shadowColor: string;
     iconHoverBgColor: string;
+    rotate: string;
   }
 }

@@ -11,11 +11,14 @@ const Button = styled.button`
   border: none;
   margin-left: 1rem;
   background: none;
+  transition: 0.3s ease-in-out;
+  transform: ${({ theme }) => theme.rotate};
 
   &:hover {
     background-color: ${({ theme }) => theme.iconHoverBgColor};
   }
 `;
+
 const ThemeButton = () => {
   const [isDarkMode, setIsDarkMode] = useRecoilState(isDarkModeState);
 

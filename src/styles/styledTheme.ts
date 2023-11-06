@@ -8,6 +8,8 @@ export const lightTheme = {
   iconHoverBorderColor: '#818181',
   shadowColor: '#b39ce4',
   iconHoverBgColor: '#0000000D',
+  rotate: 'rotate(-45deg)',
+
 };
 
 export const darkTheme = {
@@ -20,6 +22,7 @@ export const darkTheme = {
   iconHoverBorderColor: '#ffffff',
   shadowColor: '#9768fc',
   iconHoverBgColor: '#FFFFFF1A',
+  rotate: '',
 };
 
 export const theme = {
