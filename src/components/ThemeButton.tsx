@@ -27,7 +27,7 @@ const ThemeButton = () => {
       {isDarkMode ? (
         <BsFillMoonFill size='23' color='#fff' />
       ) : (
-        <BsFillSunFill size='23' />
+        <BsFillSunFill size='23' color='#212529' />
       )}
     </Button>
   );
