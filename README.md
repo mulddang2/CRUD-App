@@ -1,12 +1,14 @@
 # My-Playlist🎧
-![image](https://github.com/mulddang2/My-Playlist/assets/96711699/55a25aeb-a4b1-49bb-b665-2e9f09d941ee)
+
+![My-Playlist](https://github.com/mulddang2/My-Playlist/assets/96711699/47c426e2-8e19-4fae-9f63-3c1b1808afcd)
 
 My-Playlist는 React로 구축된 간단한 음악 목록 애플리케이션 입니다. 이를 통해 사용자는 자신이 한해동안 좋아했던 음악목록들을 돌아보고 해당 목록을 생성, 관리할 수 있습니다.
 
 ## Features
 - 즐겨찾는 재생목록 관리: 사용자는 새로운 음악 목록을 추가하고 수정하고, 삭제할 수 있습니다.
-- 영속성: 사용자 데이터와 할일 목록은 브라우저의 local storage에 저장되므로 세션 간에 데이터를 보관할 수 있습니다.
+- 영속성: 사용자 데이터와 음악 목록은 브라우저의 local storage에 저장되므로 세션 간에 데이터를 보관할 수 있습니다.
 - 반응형 UI: 사용자 기기화면에 맞게 화면이 변경되어 보여집니다.
+- 라이트모드 / 다크모드 전환: 원하는 모드를 선택하여 테마 전환을 할 수 있습니다.
 
 ## Technologies Used
 - React
